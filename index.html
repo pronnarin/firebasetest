@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ToBeIT@KMITL - ToDo Lists</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
+
+      body {
+        font-family: 'Nunito Sans', sans-serif;
+      }
+    </style>
+
+    <!-- STEP 1: Add Firebase & Firestore Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+      // STEP 2 : Your Firebase API Key
+
+      // STEP 3 : Initialize Firebase
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <div class="border-4 border-[#183153] m-2 pb-4 lg:m-4">
+        <h1
+          class="
+            text-xl text-center
+            font-extrabold
+            m-8
+            text-[#183153]
+            lg:text-2xl
+          "
+        >
+          ToBeIT <span class="text-[#FEC92A]">@KMITL</span> - ToDo Lists
+        </h1>
+
+        <div class="my-14 mb-0 flex justify-center">
+          <div class="w-10/12 text-center">
+            <input
+              type="text"
+              id="newToDo"
+              placeholder="วันนี้ทำอะไรอีกดีน้าา..."
+              id="new-item-text"
+              class="border-4 rounded-lg p-3 w-full lg:w-10/12"
+            />
+            <br /><br />
+            <button
+              type="button"
+              class="
+                rounded-lg
+                p-3
+                w-full
+                bg-[#183153]
+                text-white text-extrabold
+                lg:w-10/12
+              "
+              onclick="createToDo()"
+            >
+              เพิ่มรายการใหม่
+            </button>
+          </div>
+        </div>
+
+        <div class="my-10 flex justify-center m-auto">
+          <div class="w-10/12">
+            <h1 class="text-lg text-center font-bold text-[#183153] lg:text-xl">
+              --- ลิสต์รายการที่ต้องทำ / ทำแล้ว ---
+            </h1>
+          </div>
+        </div>
+
+        <div class="container flex flex-col items-center mx-auto">
+          <div class="relative overflow-x-auto shadow-md mt-8 w-10/12">
+            <table class="w-full text-sm text-gray-500">
+              <tbody id="show"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <h1 class="text-lg text-center font-bold m-4 ml-0 mt-14">
+          <span class="text-[#183153]">Made with ❤️ in ToBeIT'67 </span><br />
+          By
+          <!-- Edit Nong's Nickname -->
+          <span class="text-[#FEC92A] font-extrabold">[Camper's name]</span>
+        </h1>
+
+        <div class="flex gap-6 justify-center m-auto">
+          <img
+            src="https://scontent.fbkk6-1.fna.fbcdn.net/v/t39.30808-6/311154585_598400052077553_2258249866196866410_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGFf_VAiTbT_PLd4VEPWXxOpih9dxlaEyKmKH13GVoTIp_NrcaaKDno0SegoeZKouzQKtRjPtBdo1RpCrEa2r7x&_nc_ohc=uywYy91fAQgAX9ugNwE&_nc_ht=scontent.fbkk6-1.fna&oh=00_AfAuqzBJ7RnECsX1EXNi8Liq2TLR7X4y0Dy65kL-sHQYZA&oe=63610552"
+            alt="ToBeIT-Logo"
+            class="rounded-full"
+            width="50px"
+          />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/sri-ayudhya-sc-we-re-prod.appspot.com/o/images%2F2b-it-firebase-codelabs-images%2Fit-logo.png?alt=media&token=4c932ec5-b3ae-464f-8391-ae3211f03275"
+            alt="IT KMITL-Logo"
+            width="50px"
+          />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/sri-ayudhya-sc-we-re-prod.appspot.com/o/images%2F2b-it-firebase-codelabs-images%2FKMITL.png?alt=media&token=246a488c-5ed0-4536-a247-b961ec47fea0"
+            alt="KMITL-Logo"
+            width="50px"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Read ToDos Function
+
+      // Create New ToDo Function
+
+      // Delete ToDo Function
+
+      function addTableData(doc) {
+        let show = document.querySelector('#show');
+        show.innerHTML += `
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 text-left font-bold text-[#183153] text-base whitespace-nowrap">
+                                ${doc.data().content}
+                            </th>
+                            <td class="px-6 py-4 text-right">
+                                <a href="#" class="font-bold text-red-600 hover:underline text-base text-right" onclick="deleteToDo('${
+                                  doc.id
+                                }')">ลบ</a>
+                            </td>
+                        </tr>
+                    `;
+      }
+    </script>
+  </body>
+</html>
